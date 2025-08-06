@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: lab-app-config
+  namespace: lab-app
+  labels:
+    app.kubernetes.io/name: lab-app
+    app.kubernetes.io/component: config
+data:
+  DB_HOST: "postgres.lab-app.svc.cluster.local"
+  DB_PORT: "5432"
+  DB_NAME: "labdb"
+  REDIS_URL: "redis://redis.lab-app.svc.cluster.local:6379/0"
+  LOG_LEVEL: "info"
+  CACHE_TTL: "300"
+  APP_ENV: "production"
