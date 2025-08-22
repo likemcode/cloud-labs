@@ -1,0 +1,48 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: lab-app
+
+commonLabels:
+  app.kubernetes.io/part-of: cloud-labs
+
+resources:
+  - namespace.yaml
+  - configmap.yaml
+  - deployment.yaml
+  - service.yaml
+  - ingress.yaml
+  - hpa.yaml
+
+# Override per environment:
+#
+# Dev overlay example (create overlays/dev/kustomization.yaml):
+#   apiVersion: kustomize.config.k8s.io/v1beta1
+#   kind: Kustomization
+#   resources:
+#     - ../../
+#   patches:
+#     - target:
+#         kind: Deployment
+#         name: lab-app
+#       patch: |
+#         - op: replace
+#           path: /spec/replicas
+#           value: 1
+#
+# Prod overlay example (create overlays/prod/kustomization.yaml):
+#   apiVersion: kustomize.config.k8s.io/v1beta1
+#   kind: Kustomization
+#   resources:
+#     - ../../
+#   patches:
+#     - target:
+#         kind: HorizontalPodAutoscaler
+#         name: lab-app
+#       patch: |
+#         - op: replace
+#           path: /spec/minReplicas
+#           value: 5
+#         - op: replace
+#           path: /spec/maxReplicas
+#           value: 20
