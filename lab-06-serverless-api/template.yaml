@@ -1,0 +1,136 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Serverless CRUD API with API Gateway, Lambda, and DynamoDB.
+  Built as a learning exercise for cloud-labs.
+
+Globals:
+  Function:
+    Timeout: 10
+    MemorySize: 128
+    Runtime: python3.12
+    Tracing: Active
+    Environment:
+      Variables:
+        TABLE_NAME: !Ref ItemsTable
+        LOG_LEVEL: INFO
+
+Parameters:
+  Environment:
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - staging
+      - prod
+
+Resources:
+  ItemsApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: !Ref Environment
+      TracingEnabled: true
+      Cors:
+        AllowMethods: "'GET,POST,DELETE,OPTIONS'"
+        AllowHeaders: "'Content-Type,Authorization'"
+        AllowOrigin: "'*'"
+
+  CreateItemFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: handler.create_item
+      CodeUri: src/
+      Description: Create a new item
+      Events:
+        CreateItem:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ItemsApi
+            Path: /items
+            Method: POST
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ItemsTable
+
+  GetItemFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: handler.get_item
+      CodeUri: src/
+      Description: Get a single item by ID
+      Events:
+        GetItem:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ItemsApi
+            Path: /items/{id}
+            Method: GET
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref ItemsTable
+
+  ListItemsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: handler.list_items
+      CodeUri: src/
+      Description: List all items
+      Events:
+        ListItems:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ItemsApi
+            Path: /items
+            Method: GET
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref ItemsTable
+
+  DeleteItemFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: handler.delete_item
+      CodeUri: src/
+      Description: Delete an item by ID
+      Events:
+        DeleteItem:
+          Type: Api
+          Properties:
+            RestApiId: !Ref ItemsApi
+            Path: /items/{id}
+            Method: DELETE
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ItemsTable
+
+  ItemsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${Environment}-items"
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      Tags:
+        - Key: Project
+          Value: cloud-labs
+        - Key: Lab
+          Value: lab-06-serverless
+        - Key: Environment
+          Value: !Ref Environment
+
+Outputs:
+  ApiUrl:
+    Description: URL of the API Gateway endpoint
+    Value: !Sub "https://${ItemsApi}.execute-api.${AWS::Region}.amazonaws.com/${Environment}/"
+
+  ItemsTableName:
+    Description: Name of the DynamoDB table
+    Value: !Ref ItemsTable
+
+  ItemsTableArn:
+    Description: ARN of the DynamoDB table
+    Value: !GetAtt ItemsTable.Arn
