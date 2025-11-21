@@ -1,0 +1,36 @@
+{
+  "httpMethod": "POST",
+  "path": "/items",
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Host": "api.example.com",
+    "User-Agent": "curl/8.1.2",
+    "X-Forwarded-For": "203.0.113.42",
+    "X-Forwarded-Port": "443",
+    "X-Forwarded-Proto": "https"
+  },
+  "queryStringParameters": null,
+  "pathParameters": null,
+  "body": "{\"name\": \"Sample Item\", \"description\": \"This is a test item created via API Gateway\"}",
+  "isBase64Encoded": false,
+  "requestContext": {
+    "accountId": "123456789012",
+    "apiId": "abc123def4",
+    "authorizer": null,
+    "httpMethod": "POST",
+    "identity": {
+      "sourceIp": "203.0.113.42",
+      "userAgent": "curl/8.1.2"
+    },
+    "path": "/dev/items",
+    "protocol": "HTTP/1.1",
+    "requestId": "c6af9ac6-7b61-11e6-9a41-93e8deadbeef",
+    "requestTimeEpoch": 1728550000000,
+    "resourceId": "aBC123",
+    "resourcePath": "/items",
+    "stage": "dev"
+  },
+  "resource": "/items",
+  "stageVariables": null
+}
