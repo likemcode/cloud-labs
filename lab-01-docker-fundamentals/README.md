@@ -53,3 +53,4 @@ make clean    # Stop and remove everything
 ## Cost
 
 $0 --- all local development with Docker Desktop.
+# Lab improvements
