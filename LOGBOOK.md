@@ -71,3 +71,6 @@ Came back to lab-05 and improved the Grafana dashboard. Added request rate, erro
 ## Apr 5, 2026 --- Ten months in
 
 Looking back at my early Docker lab and cringing slightly. The code works but I'd structure it differently now. That's probably a good sign. Biggest takeaways so far: (1) always version control your infra, (2) monitoring is not optional, (3) break things on purpose to understand failure modes, (4) the gap between "I read about it" and "I built it" is enormous. Planning to add a lab on service mesh next.
+
+## Jan 6, 2026
+Revisited the Docker lab after using multi-stage builds in production. Added notes about cache invalidation.
