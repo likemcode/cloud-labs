@@ -129,3 +129,6 @@ docker system prune -a --volumes
 # See disk usage
 docker system df
 ```
+
+## Buildx
+docker buildx build --platform linux/amd64,linux/arm64 -t app:latest .
