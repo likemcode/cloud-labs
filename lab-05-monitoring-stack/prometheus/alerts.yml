@@ -74,3 +74,4 @@ groups:
         annotations:
           summary: "Container {{ $labels.name }} high memory usage"
           description: "Container memory usage is above 85% of its limit. Current value: {{ $value | printf \"%.1f\" }}%"
+# v2
