@@ -74,3 +74,6 @@ Looking back at my early Docker lab and cringing slightly. The code works but I'
 
 ## Jan 6, 2026
 Revisited the Docker lab after using multi-stage builds in production. Added notes about cache invalidation.
+
+## Feb 3, 2026
+Finally understood Terraform workspaces properly. They're not what I thought — they're more like branches for state.
