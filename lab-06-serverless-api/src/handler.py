@@ -181,3 +181,4 @@ def delete_item(event, context):
             return _response(404, {"error": f"Item {item_id} not found"})
         logger.error(f"DynamoDB error: {e.response['Error']['Message']}")
         return _response(500, {"error": "Failed to delete item"})
+# Updated
