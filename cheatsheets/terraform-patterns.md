@@ -223,3 +223,5 @@ resource "aws_db_instance" "main" {
   }
 }
 ```
+## Workspaces
+terraform workspace new staging
