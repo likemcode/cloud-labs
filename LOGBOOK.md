@@ -77,3 +77,6 @@ Revisited the Docker lab after using multi-stage builds in production. Added not
 
 ## Feb 3, 2026
 Finally understood Terraform workspaces properly. They're not what I thought — they're more like branches for state.
+
+## Feb 18, 2026
+Learned about Grafana alerting vs Alertmanager. They serve different purposes and shouldn't overlap.
