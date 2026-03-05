@@ -80,3 +80,6 @@ Finally understood Terraform workspaces properly. They're not what I thought —
 
 ## Feb 18, 2026
 Learned about Grafana alerting vs Alertmanager. They serve different purposes and shouldn't overlap.
+
+## Mar 5, 2026
+Started thinking about service mesh. Istio seems overkill for small clusters but Linkerd looks promising.
