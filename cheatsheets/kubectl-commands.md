@@ -120,3 +120,5 @@ kubectl delete all --all -n lab-app
 # Delete namespace (deletes everything in it)
 kubectl delete namespace lab-app
 ```
+## Rollout
+kubectl rollout restart deployment/app -n production
