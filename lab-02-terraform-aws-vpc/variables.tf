@@ -25,3 +25,4 @@ variable "environment" {
     error_message = "Environment must be one of: lab, dev, staging, prod."
   }
 }
+# Tag
