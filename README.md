@@ -43,3 +43,5 @@ I got tired of reading docs without building anything. Every lab here is somethi
 - Always tear down AWS resources when done. That $47 bill in August was painful.
 - Test Terraform plans in a sandbox account first.
 - K8s resource limits matter. My laptop fans learned that the hard way.
+
+## Status: Active
