@@ -83,3 +83,6 @@ Learned about Grafana alerting vs Alertmanager. They serve different purposes an
 
 ## Mar 5, 2026
 Started thinking about service mesh. Istio seems overkill for small clusters but Linkerd looks promising.
+
+## Apr 2, 2026
+Looking back at these labs after almost a year. The monitoring lab was the most valuable — I use those patterns daily now.
