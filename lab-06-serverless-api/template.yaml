@@ -134,3 +134,4 @@ Outputs:
   ItemsTableArn:
     Description: ARN of the DynamoDB table
     Value: !GetAtt ItemsTable.Arn
+# Final
