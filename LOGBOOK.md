@@ -86,3 +86,19 @@ Started thinking about service mesh. Istio seems overkill for small clusters but
 
 ## Apr 2, 2026
 Looking back at these labs after almost a year. The monitoring lab was the most valuable — I use those patterns daily now.
+
+## Lab 07 — Three-Tier AWS Architecture (HA) — 2026-05-11
+
+**Objectif :** Déployer une architecture web 3-tier hautement disponible sur AWS avec coûts optimisés.
+
+**Stack :** VPC (2 public + 2 private subnets), EC2 t3.micro (Web + 2× App), RDS MySQL Multi-AZ, ALB, WAF, S3 + VPC Endpoint.
+
+**Points clés :**
+- Security groups appliquent la séparation 3-tier (Web→ALB→App→DB)
+- ALB round-robin sur 2 instances App (cross-AZ)
+- WAF : Rate Limit + SQLi + Common Rules
+- S3 : upload/download depuis l'App Tier via VPC Gateway Endpoint
+- ALB access logs → S3
+- Coût : ~$2.46/jour (~$75/mois) — optimisé test/dev
+
+**Fichiers :** `lab-07-three-tier-aws/`
